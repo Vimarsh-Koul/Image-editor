@@ -1,0 +1,36 @@
+body{
+  background-image: url("images/wallpaper.jpg");
+}
+
+a{
+  color: white! important;
+}
+
+h1{
+  font-family: 'Architects Daughter', cursive;
+  padding-top: 50px;
+  padding-left: 50px;
+  color: white;
+}
+
+h2{
+  font-family: 'Indie Flower', cursive;
+  padding-top: 90px;
+  padding-left: 50px;
+  color: white;
+}
+
+div{
+  text-align: center;
+  display: inline-block;
+}
+
+.buttons{
+  font-family:none;
+  margin-left: 40px;
+}
+
+.btn-1{
+  width: 170px;
+  margin-right: 50px;
+}
