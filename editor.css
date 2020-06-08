@@ -1,0 +1,51 @@
+header{
+  font-family: 'Architects Daughter', cursive;
+  background-image:url("images/dark-header.jpg");
+  background-size: cover;
+  padding: 3%;
+  padding-left: 5%;
+  color: white;
+}
+
+div{
+  font-size: 30px;
+}
+
+.workspace{
+  background-color: #f4f7c5;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.main-img{
+  max-width: 1250px;
+  max-height: 510px;
+}
+
+.last-row{
+  background-color: #f4f7c5;
+}
+
+.nav-bar{
+  background-image: url("images/dark-header.jpg");
+  background-size: cover;
+  color: white;
+  text-align: center;
+  border-width: thick;
+  border-style: dotted;
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+}
+
+.first-row{
+  border-width: thick;
+  border-style: dotted;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
+
+.menus{
+  background-color: yellow;
+}
