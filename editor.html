@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Imator</title>
+
+  <!-- favicon -->
+  <link rel="icon" href="images/favicon.ico">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" href="editor.css">
+
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <!-- fontawesome -->
+  <script src="https://kit.fontawesome.com/21dd03b4bb.js" crossorigin="anonymous"></script>
+
+  <!-- J-query and JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+  <!-- font style -->
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <header>
+    <h1>Imator</h1>
+  </header>
+  <div class="row first-row">
+    <div class="btn-group-vertical">
+
+      <div class="dropright">
+        <button class="btn btn-lg btn-outline-dark dropdown-toggle" id="homeButton" data-toggle="dropdown" data-toggle="tooltip" title="home" aria-haspopup="true" aria-expanded="false" type="button" name="button"><i class="fas fa-home fa-2x"></i></button>
+        <div class="dropdown-menu" aria-labelledby="homeButton">
+          <a class="dropdown-item" href="javascript:void(0);">New</a>
+          <a class="dropdown-item" href="javascript:void(0);">Open</a>
+          <a class="dropdown-item" href="javascript:void(0);">Save</a>
+          <a class="dropdown-item" href="javascript:void(0);">Exit</a>
+        </div>
+      </div>
+
+      <button class="btn btn-lg btn-outline-dark" type="button" data-toggle="dropdown tooltip" data-placement="bottom" title="crop" name="button"><i class="fas fa-crop-alt fa-2x"></i></button>
+
+      <div class="dropright">
+        <button class="btn btn-lg btn-outline-dark dropdown-toggle" type="button" id="cutButton" data-toggle="dropdown" data-toggle="tooltip" title="cut" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-cut fa-2x"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="cutButton">
+          <a class="dropdown-item" href="javascript:void(0);">Rectangle shape</a>
+          <a class="dropdown-item" href="javascript:void(0);">Circle shape</a>
+          <a class="dropdown-item" href="javascript:void(0);">Triangle shape</a>
+        </div>
+      </div>
+
+      <div class="dropright">
+        <button class="btn btn-lg btn-outline-dark dropdown-toggle" id="homeButton" data-toggle="dropdown" data-toggle="tooltip" title="adjust" aria-haspopup="true" aria-expanded="false" type="button" name="button"><i class="fas fa-sun fa-2x"></i></button>
+        <div class="dropdown-menu" aria-labelledby="homeButton">
+          <a class="dropdown-item" href="javascript:void(0);">Saturation</a>
+          <a class="dropdown-item" href="javascript:void(0);">Temperature</a>
+          <a class="dropdown-item" href="javascript:void(0);">Brightness</a>
+        </div>
+      </div>
+
+      <button class="btn btn-lg btn-outline-dark" data-toggle="dropdown tooltip" data-placement="bottom" title="filter" type="button" name="button"><i class="fas fa-filter fa-2x"></i></button>
+
+      <div class="dropright">
+        <button class="btn btn-lg btn-outline-dark dropdown-toggle" id="homeButton" data-toggle="dropdown" data-toggle="tooltip" title="rotations" aria-haspopup="true" aria-expanded="false" type="button" name="button"><i class="fas fa-arrows-alt fa-2x"></i></button>
+        <div class="dropdown-menu" aria-labelledby="homeButton">
+          <a class="dropdown-item" href="javascript:void(0);">Rotate Right</a>
+          <a class="dropdown-item" href="javascript:void(0);">Rotate Left</a>
+          <a class="dropdown-item" href="javascript:void(0);">Horizontal flip</a>
+          <a class="dropdown-item" href="javascript:void(0);">Vertical flip</a>
+        </div>
+      </div>
+
+      <button class="btn btn-lg btn-outline-dark" data-toggle="dropdown tooltip" data-placement="bottom" title="pen" type="button" name="button"><i class="fas fa-pen fa-2x"></i></button>
+
+      <button class="btn btn-lg btn-outline-dark" data-toggle="dropdown tooltip" data-placement="bottom" title="Resize image" type="button" name="button"><i class="fas fa-images fa-2x"></i></button>
+    </div>
+
+    <div class="col-10 workspace">
+      <img class="main-img" src="images/wallpaper.jpg" alt="">
+    </div>
+    <div class="col nav-bar">
+      <h3>Nav <br>Bar </h3>
+    </div>
+  </div>
+  <div class="row" style="background-color: #f4f7c5;">
+    <p></p>
+  </div>
+  <div class="row last-row">
+    <div class="col-1">
+      <button class="btn btn-lg btn-dark" type="button" data-toggle="dropdown tooltip" data-placement="bottom" title="setting" name="button"><i class="fas fa-cog fa-2x"></i></button>
+    </div>
+    <div class="col-5">
+    </div>
+    <div class="col-2 btn-group">
+      <button class="btn btn-dark" type="button" data-toggle="dropdown tooltip" data-placement="bottom" title="undo" name="button"><i class="fas fa-arrow-alt-circle-left fa-2x"></i></button>
+      <button class="btn btn-dark" type="button" data-toggle="dropdown tooltip" data-placement="bottom" title="redo" name="button"><i class="fas fa-arrow-alt-circle-right fa-2x"></i></button>
+    </div>
+    <div class="col-2 btn-group">
+      <button class="btn btn-dark" type="button" name="button"><i class="fas fa-trash-alt fa-2x bottom-buttons"></i>&nbsp; Cancel</button>
+      <button class="btn btn-dark" type="button" name="button"><i class="fas fa-save fa-2x bottom-buttons"></i>&nbsp; &nbsp; Save</button>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- JS and JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="editor.js" charset="utf-8"></script>
+</body>
+
+</html>
