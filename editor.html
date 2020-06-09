@@ -24,6 +24,11 @@
 
   <!-- font style -->
   <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+</script>
+  <script>
+
+  </script>
 
 </head>
 
@@ -36,11 +41,12 @@
 
       <div class="dropright">
         <button class="btn btn-lg btn-outline-dark dropdown-toggle" id="homeButton" data-toggle="dropdown" data-toggle="tooltip" title="home" aria-haspopup="true" aria-expanded="false" type="button" name="button"><i class="fas fa-home fa-2x"></i></button>
-        <div class="dropdown-menu" aria-labelledby="homeButton">
-          <a class="dropdown-item" href="javascript:void(0);">New</a>
-          <a class="dropdown-item" href="javascript:void(0);">Open</a>
-          <a class="dropdown-item" href="javascript:void(0);">Save</a>
-          <a class="dropdown-item" href="javascript:void(0);">Exit</a>
+        <div class="dropdown-menu menu" aria-labelledby="homeButton">
+          <a class="dropdown-item item" href="javascript:void(0);">New</a>
+
+          <a class="dropdown-item item" href="javascript:void(0);">Open</a>
+          <a class="dropdown-item item" href="javascript:void(0);">Save</a>
+          <a class="dropdown-item item" href="javascript:void(0);">Exit</a>
         </div>
       </div>
 
@@ -50,31 +56,67 @@
         <button class="btn btn-lg btn-outline-dark dropdown-toggle" type="button" id="cutButton" data-toggle="dropdown" data-toggle="tooltip" title="cut" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-cut fa-2x"></i>
         </button>
-        <div class="dropdown-menu" aria-labelledby="cutButton">
-          <a class="dropdown-item" href="javascript:void(0);">Rectangle shape</a>
-          <a class="dropdown-item" href="javascript:void(0);">Circle shape</a>
-          <a class="dropdown-item" href="javascript:void(0);">Triangle shape</a>
+        <div class="dropdown-menu menu" aria-labelledby="cutButton">
+          <a class="dropdown-item item" href="javascript:void(0);">Rectangle shape</a>
+          <a class="dropdown-item item" href="javascript:void(0);">Circle shape</a>
+          <a class="dropdown-item item" href="javascript:void(0);">Triangle shape</a>
+          <footer class="foot">
+          <button class="response1"> apply</button>
+          <button class="response2">cancel</button>
+        </footer>
         </div>
       </div>
 
       <div class="dropright">
         <button class="btn btn-lg btn-outline-dark dropdown-toggle" id="homeButton" data-toggle="dropdown" data-toggle="tooltip" title="adjust" aria-haspopup="true" aria-expanded="false" type="button" name="button"><i class="fas fa-sun fa-2x"></i></button>
-        <div class="dropdown-menu" aria-labelledby="homeButton">
-          <a class="dropdown-item" href="javascript:void(0);">Saturation</a>
-          <a class="dropdown-item" href="javascript:void(0);">Temperature</a>
-          <a class="dropdown-item" href="javascript:void(0);">Brightness</a>
+        <div class="dropdown-menu menu" aria-labelledby="homeButton">
+          <a class="dropdown-item item" href="javascript:void(0);">Saturation<br>
+          Red<br><input type="range" name="vol" min="0" max="255" class="slider" id="red" step="1" value="1">
+          Green<br> <input type="range" name="vol" min="0" max="255" class="slider" id="green" step="1" value="1">
+          Blue<br> <input type="range" name="vol" min="0" max="255" class="slider" id="blue" step="1" value="1">
+          <div id="box"></div>
+        </a>
+
+          <a class="dropdown-item item" href="javascript:void(0);">Temperature<br>
+            <input type="range" id="vol" name="vol" min="0" max="255" class="slider">
+          </a>
+          <a class="dropdown-item item" href="javascript:void(0);">Brightness<br>
+            <input type="range" id="vol" name="vol" min="0" max="50" class="slider">
+          </a>
+          <footer class="foot1">
+          <button class="response1"> apply</button>
+          <button class="response2">cancel</button>
+        </footer>
+
+          <script type="text/javascript">
+            var input = document.querySelectorAll("input");
+              for(var i = 0; i < input.length; i++){
+            input[i].addEventListener("input", function(){
+          var red = document.getElementById("red").value,
+          green = document.getElementById("green").value,
+          blue = document.getElementById("blue").value;
+        var display = document.getElementById("box");
+      display.style.background = "rgb(" + red + ", " + green + ", " + blue + ")";
+    });
+  }
+</script>
         </div>
-      </div>
+      
+</div>
 
       <button class="btn btn-lg btn-outline-dark" data-toggle="dropdown tooltip" data-placement="bottom" title="filter" type="button" name="button"><i class="fas fa-filter fa-2x"></i></button>
 
       <div class="dropright">
         <button class="btn btn-lg btn-outline-dark dropdown-toggle" id="homeButton" data-toggle="dropdown" data-toggle="tooltip" title="rotations" aria-haspopup="true" aria-expanded="false" type="button" name="button"><i class="fas fa-arrows-alt fa-2x"></i></button>
-        <div class="dropdown-menu" aria-labelledby="homeButton">
-          <a class="dropdown-item" href="javascript:void(0);">Rotate Right</a>
-          <a class="dropdown-item" href="javascript:void(0);">Rotate Left</a>
-          <a class="dropdown-item" href="javascript:void(0);">Horizontal flip</a>
-          <a class="dropdown-item" href="javascript:void(0);">Vertical flip</a>
+        <div class="dropdown-menu menu" aria-labelledby="homeButton">
+          <a class="dropdown-item item" href="javascript:void(0);">Rotate Right</a>
+          <a class="dropdown-item item" href="javascript:void(0);">Rotate Left</a>
+          <a class="dropdown-item item" href="javascript:void(0);">Horizontal flip</a>
+          <a class="dropdown-item item" href="javascript:void(0);">Vertical flip</a>
+          <footer class="foot2">
+          <button class="response1"> apply</button>
+          <button class="response2">cancel</button>
+        </footer>
         </div>
       </div>
 
