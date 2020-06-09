@@ -89,7 +89,7 @@ button.response1{
   background-color: #2727ff;
   width: 100px;
   border: none;
-  color: white;  
+  color: white;
 }
 button.response2{
   width: 100px;
@@ -98,15 +98,15 @@ button.response2{
   color: white;
 }
 .foot{
-  padding-top: 310px;
+  padding-top: 295px;
 }
 
 .foot1{
-padding-top: 190px;
+padding-top: 0px;
 }
 
 .foot2{
-  padding-top: 258px;
+  padding-top: 50px;
 }
 
 #box{

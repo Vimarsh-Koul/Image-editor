@@ -43,10 +43,12 @@
         <button class="btn btn-lg btn-outline-dark dropdown-toggle" id="homeButton" data-toggle="dropdown" data-toggle="tooltip" title="home" aria-haspopup="true" aria-expanded="false" type="button" name="button"><i class="fas fa-home fa-2x"></i></button>
         <div class="dropdown-menu menu" aria-labelledby="homeButton">
           <a class="dropdown-item item" href="javascript:void(0);">New</a>
-
-          <a class="dropdown-item item" href="javascript:void(0);">Open</a>
-          <a class="dropdown-item item" href="javascript:void(0);">Save</a>
-          <a class="dropdown-item item" href="javascript:void(0);">Exit</a>
+          <br>
+          <label for="files" style="color:rgba(230,230,230,0.9);" class="dropdown-item item">Open</label>
+          <input type="file" style="visibility:hidden;" id="files">
+          <a id="save" class="dropdown-item item" href="javascript:void(0);">Save</a>
+          <br>
+          <a id="exit" class="dropdown-item item" href="javascript:void(0);">Exit</a>
         </div>
       </div>
 
@@ -101,7 +103,7 @@
   }
 </script>
         </div>
-      
+
 </div>
 
       <button class="btn btn-lg btn-outline-dark" data-toggle="dropdown tooltip" data-placement="bottom" title="filter" type="button" name="button"><i class="fas fa-filter fa-2x"></i></button>
@@ -120,7 +122,7 @@
         </div>
       </div>
 
-      <button class="btn btn-lg btn-outline-dark" data-toggle="dropdown tooltip" data-placement="bottom" title="pen" type="button" name="button"><i class="fas fa-pen fa-2x"></i></button>
+      <button id="pen" class="btn btn-lg btn-outline-dark" data-toggle="dropdown tooltip" data-placement="bottom" title="pen" type="button" name="button"><i class="fas fa-pen fa-2x"></i></button>
 
       <button class="btn btn-lg btn-outline-dark" data-toggle="dropdown tooltip" data-placement="bottom" title="Resize image" type="button" name="button"><i class="fas fa-images fa-2x"></i></button>
     </div>
@@ -146,8 +148,8 @@
       <button class="btn btn-dark" type="button" data-toggle="dropdown tooltip" data-placement="bottom" title="redo" name="button"><i class="fas fa-arrow-alt-circle-right fa-2x"></i></button>
     </div>
     <div class="col-2 btn-group">
-      <button class="btn btn-dark" type="button" name="button"><i class="fas fa-trash-alt fa-2x bottom-buttons"></i>&nbsp; Cancel</button>
-      <button class="btn btn-dark" type="button" name="button"><i class="fas fa-save fa-2x bottom-buttons"></i>&nbsp; &nbsp; Save</button>
+      <button id="cancle" class="btn btn-dark" type="button" name="button"><i class="fas fa-trash-alt fa-2x bottom-buttons"></i>&nbsp; Cancel</button>
+      <button id="save2" class="btn btn-dark" type="button" name="button"><i class="fas fa-save fa-2x bottom-buttons"></i>&nbsp; &nbsp; Save</button>
     </div>
   </div>
 
