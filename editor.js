@@ -31,6 +31,14 @@ var count = 0
    }
  });
 
+ $('#open').click(function(){
+   $('.url').css("visibility","visible");
+ });
+
+ $('.url-submit').click(function(){
+   $('.url').css("visibility","hidden");
+ });
+
  $('#new').click(function(){
   console.log("new button clicked");
 });
@@ -97,4 +105,12 @@ $('#undo').click(function(){
 
 $('#redo').click(function(){
   console.log("redo button clicked");
+});
+
+$('.apply-button').click(function(){
+ console.log("apply button clicked");
+});
+
+$('.cancle-button').click(function(){
+ console.log("cancle button clicked");
 });

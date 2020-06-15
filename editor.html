@@ -44,8 +44,8 @@
         <div class="dropdown-menu menu" aria-labelledby="homeButton">
           <a id="new" class="dropdown-item item" href="javascript:void(0);">New</a>
           <br>
-          <label for="files" style="color:rgba(230,230,230,0.9);" class="dropdown-item item">Open</label>
-          <input type="file" style="visibility:hidden;" id="files">
+          <a id="open" class="dropdown-item item" href="javascript:void(0);">open</a>
+          <br>
           <a id="save" class="dropdown-item item" href="javascript:void(0);">Save</a>
           <br>
           <a id="exit" class="dropdown-item item" href="javascript:void(0);">Exit</a>
@@ -128,7 +128,11 @@
     </div>
 
     <div class="col-10 workspace">
-      <img class="main-img" src="images/wallpaper.jpg" alt="">
+      <form class="url" action="" method="post">
+        <label for="">enter url : </label>
+        <input type="text" name="" value="">
+        <input class="url-submit" type="submit" name="" value="submit">
+      </form>
     </div>
     <div class="col nav-bar">
       <h3>Nav <br>Bar </h3>
