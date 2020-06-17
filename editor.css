@@ -22,6 +22,7 @@ div{
 .main-img{
   max-width: 1250px;
   max-height: 510px;
+  padding-bottom: 20px;
 }
 
 .last-row{
@@ -120,4 +121,8 @@ padding-top: 0px;
 
 input{
   margin-top: 5px;
+}
+
+.url{
+  visibility: hidden;
 }

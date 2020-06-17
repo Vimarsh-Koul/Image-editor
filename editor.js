@@ -30,3 +30,87 @@ var count = 0
      $('body').css("cursor", "auto");
    }
  });
+
+ $('#open').click(function(){
+   $('.url').css("visibility","visible");
+ });
+
+ $('.url-submit').click(function(){
+   $('.url').css("visibility","hidden");
+ });
+
+ $('#new').click(function(){
+  console.log("new button clicked");
+});
+
+$('#crop').click(function(){
+  console.log("crop button clicked");
+});
+
+$('#rectangle-shape').click(function(){
+  console.log("rectangle-shape button clicked");
+});
+
+$('#circle-shape').click(function(){
+  console.log("circle-shape button clicked");
+});
+
+$('#triangle-shape').click(function(){
+  console.log("triangle-shape button clicked");
+});
+
+$('#saturation').click(function(){
+  console.log("saturation clicked");
+});
+
+$('#temperature').click(function(){
+  console.log("temperature clicked");
+});
+
+$('#brightness').click(function(){
+  console.log("brightess clicked");
+});
+
+$('#filter').click(function(){
+  console.log("filter button clicked");
+});
+
+$('#rotate-right').click(function(){
+  console.log("rotate-right button clicked");
+});
+
+$('#rotate-left').click(function(){
+  console.log("rotate-left button clicked");
+});
+
+$('#horizontal-flip').click(function(){
+  console.log("horizontal-flip button clicked");
+});
+
+$('#vertical-flip').click(function(){
+  console.log("vertical-flip button clicked");
+});
+
+$('#resize').click(function(){
+  console.log("resize button clicked");
+});
+
+$('#setting').click(function(){
+  console.log("setting button clicked");
+});
+
+$('#undo').click(function(){
+  console.log("undo button clicked");
+});
+
+$('#redo').click(function(){
+  console.log("redo button clicked");
+});
+
+$('.apply-button').click(function(){
+ console.log("apply button clicked");
+});
+
+$('.cancle-button').click(function(){
+ console.log("cancle button clicked");
+});
