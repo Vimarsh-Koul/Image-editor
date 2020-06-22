@@ -8,11 +8,11 @@ app = Flask(__name__)
 def home():
 	return render_template('index.html')
 
-@app.route("/editor.html")
+@app.route("/editor")
 def editor():
 	return render_template('editor.html')
 
-@app.route("/faq.html")
+@app.route("/faq")
 def faq():
 	return render_template('faq.html')
 
