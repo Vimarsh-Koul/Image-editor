@@ -5,15 +5,15 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-	return "Hello world!"
+	return render_template('index.html')
 
-@app.route("/editor")
+@app.route("/editor.html")
 def editor():
-	return "editor page"
+	return render_template('editor.html')
 
-@app.route("/faq")
+@app.route("/faq.html")
 def faq():
-	return "faq page"
+	return render_template('faq.html')
 
 @app.route('/editor/<username>')
 def profile(username): 
