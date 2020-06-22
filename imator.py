@@ -8,15 +8,15 @@ app = Flask(__name__)
 def home():
 	return render_template('index.html')
 
-@app.route("/editor")
+@app.route("/editor/")
 def editor():
 	return render_template('editor.html')
 
-@app.route("/faq")
+@app.route("/faq/")
 def faq():
 	return render_template('faq.html')
 
-@app.route('/editor/<username>')
+@app.route('/editor/<username>/')
 def profile(username): 
 	return '{}\'s profile'.format(escape(username))	
 
