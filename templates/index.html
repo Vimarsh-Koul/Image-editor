@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Indie+Flower&display=swap" rel="stylesheet">
 
 </head>
-
+ 
 <body>
   <h1 style="font-size:1500%;"><b>Imator</b></h1>
   <div class="">
@@ -23,18 +23,38 @@
       all new Imator with latest editing tolls.
     </h2>
     <br>
-      <button class="btn btn-lg btn-outline-dark btn-2" type="button" name="button">
+    
+
+    <form method = "POST" action="" enctype=multipart/form-data>
+      <label class="form_1">Add IMAGE</label>
+      <input class="form_1" type="file" name="file">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class=flashes>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+      <input type="submit" name="">
+      
+      
+    </form>
+
+      <!--button class="btn btn-lg btn-outline-dark btn-2" type="button" name="button">
         <label class="btn-2" for="files">Add Image</label>
         <br>
         <input type="file" style="visibility:hidden;" id="files">
-      </button>
+      </button-->
   </div>
 
   <h2 class="buttons">
-    <button type="button" class="btn btn-lg btn-outline-dark btn-1"><a href="faq/">Brief</a></button>
+    <button type="button" class="btn btn-lg btn-outline-dark btn-1"><a href="faq">Brief</a></button>
     <button type="button" class="btn btn-lg btn-outline-dark btn-1"><a href="javascript:void(0);">Examples</a></button>
     <button type="button" class="btn btn-lg btn-outline-dark btn-1"><a href="editor">Open Editor</a></button>
   </h2>
+
 
 </body>
 
