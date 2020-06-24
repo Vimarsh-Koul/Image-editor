@@ -43,7 +43,8 @@ div{
 }
 
 .form_1{
-  color: white;
+  color: white ! important;
+
 }
 
 

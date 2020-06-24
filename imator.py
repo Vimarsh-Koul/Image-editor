@@ -20,18 +20,18 @@ def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
-            flash('No file part','danger')
+            flash(u'No file part','danger')
             return render_template('index.html')
         file = request.files['file']
         # if user does not select file, browser also
         # submit an empty part without filename
         if file.filename == '':
-            flash('No selected file','danger')
+            flash(u'No selected file','danger')
             return render_template('index.html')
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            flash("Image added",'success')
+            flash(u'Image added','success')
             return render_template('index.html')
     return render_template('index.html')
 
