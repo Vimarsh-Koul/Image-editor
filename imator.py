@@ -33,6 +33,10 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             flash(u'Image added','success')
             return render_template('index.html')
+        else:
+            flash('wrong format','danger')
+            return render_template('index.html')
+                
     return render_template('index.html')
 
 @app.route("/editor/", methods =['GET','POST'])
