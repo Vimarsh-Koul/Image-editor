@@ -3,6 +3,9 @@ from markupsafe import escape
 import os
 from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
+import sqlite3 as lite
+
+ans=0
 
 UPLOAD_FOLDER = '/home/harsh/Documents/Image-editor/static/UPLOAD_FOLDER'
 ALLOWED_EXTENSIONS = { 'png', 'jpg', 'jpeg'}
@@ -10,6 +13,8 @@ ALLOWED_EXTENSIONS = { 'png', 'jpg', 'jpeg'}
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SECRET_KEY'] = '3a33686984f59acd653d57db8bb526ce'
+
+
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -32,6 +37,18 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             flash(u'Image added','success')
+
+            con = lite.connect('test.db')
+            with con:
+                cur = con.cursor()
+                global ans
+                if ans==1:
+                    cur.execute("DROP TABLE IF EXISTS uploads")
+                    cur.execute("CREATE TABLE uploads(id INT, name TEXT);")
+                cur.execute("INSERT INTO uploads VALUES(?,?)",(ans ,filename))
+                ans=ans+1
+            
+
             return render_template('index.html')
         else:
             flash('wrong format','danger')
