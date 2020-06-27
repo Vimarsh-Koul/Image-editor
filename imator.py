@@ -5,7 +5,6 @@ from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 import sqlite3 as lite
 
-ans=0
 
 UPLOAD_FOLDER = '/home/harsh/Documents/Image-editor/static/UPLOAD_FOLDER'
 ALLOWED_EXTENSIONS = { 'png', 'jpg', 'jpeg'}
@@ -14,7 +13,8 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SECRET_KEY'] = '3a33686984f59acd653d57db8bb526ce'
 
-
+# using this variable as global to enter data in our database
+ans=0
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -38,16 +38,27 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             flash(u'Image added','success')
 
+            # adding data to the database
             con = lite.connect('test.db')
             with con:
                 cur = con.cursor()
                 global ans
-                if ans==1:
+                if ans==0:
                     cur.execute("DROP TABLE IF EXISTS uploads")
-                    cur.execute("CREATE TABLE uploads(id INT, name TEXT);")
-                cur.execute("INSERT INTO uploads VALUES(?,?)",(ans ,filename))
+                    cur.execute("CREATE TABLE uploads(id TEXT, name TEXT);")
                 ans=ans+1
-            
+                
+                # preventing my code from entering a pre existing file detail in my database again
+                count =0 
+                cur.execute("SELECT * FROM uploads")
+                rows = cur.fetchall()
+                for row in rows:
+                    if row [1]==filename:
+                        count =1
+                        break
+                if count ==0 :
+                    cur.execute("INSERT INTO uploads VALUES(?,?)",(ans ,filename))
+
 
             return render_template('index.html')
         else:
@@ -59,20 +70,59 @@ def upload_file():
 @app.route("/editor/", methods =['GET','POST'])
 def editor():
     if request.method == 'POST':
-        filename=request.form['text']
-        return redirect(url_for('uploaded_file',filename=filename))
+        file_id=request.form['text']
+
+        con = lite.connect('test.db')
+        with con:
+            cur=con.cursor()
+            cur.execute("select * FROM uploads")
+
+            while True:
+                row = cur.fetchone()
+                if row == None:
+                    break 
+                if row[0] == file_id:
+                    filename= row[1]
+
+                    return redirect(url_for('uploaded_file', file_id = file_id))
+
     return render_template('editor.html')
 
 @app.route("/faq/")
 def faq():
     return render_template('faq.html')
 
-@app.route('/editor/<filename>/',methods =['GET','POST'])
-def uploaded_file(filename):
+@app.route('/editor/<file_id>/',methods =['GET','POST'])
+def uploaded_file(file_id):
     if request.method == 'POST':
-        filename=request.form['text']
-        return redirect(url_for('uploaded_file',filename=filename))
-    return render_template('editor.html',filename=filename)
+        file_id=request.form['text']
+
+        con = lite.connect('test.db')
+        with con:
+            cur=con.cursor()
+            cur.execute("select * FROM uploads")
+
+            while True:
+                row = cur.fetchone()
+                if row == None:
+                    break 
+                if row[0] == file_id:
+                    filename= row[1]
+                    return redirect(url_for('uploaded_file' , file_id=file_id))
+        return render_template('editor.html')
+    else : 
+        con = lite.connect('test.db')
+        with con:
+            cur=con.cursor()
+            cur.execute("select * FROM uploads")
+
+            while True:
+                row = cur.fetchone()
+                if row == None:
+                    break 
+                if row[0] == file_id:
+                    filename= row[1]
+        return render_template('editor.html',filename=filename)
     
 
 if __name__ == '__main__':
