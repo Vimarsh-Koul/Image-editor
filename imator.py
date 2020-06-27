@@ -55,6 +55,7 @@ def upload_file():
                 for row in rows:
                     if row [1]==filename:
                         count =1
+                        ans= ans-1
                         break
                 if count ==0 :
                     cur.execute("INSERT INTO uploads VALUES(?,?)",(ans ,filename))
@@ -71,22 +72,10 @@ def upload_file():
 def editor():
     if request.method == 'POST':
         file_id=request.form['text']
+        return redirect(url_for('uploaded_file', file_id = file_id))
 
-        con = lite.connect('test.db')
-        with con:
-            cur=con.cursor()
-            cur.execute("select * FROM uploads")
-
-            while True:
-                row = cur.fetchone()
-                if row == None:
-                    break 
-                if row[0] == file_id:
-                    filename= row[1]
-
-                    return redirect(url_for('uploaded_file', file_id = file_id))
-
-    return render_template('editor.html')
+    message = "Enter URL in open button to open Image"
+    return render_template('editor.html', message=message)
 
 @app.route("/faq/")
 def faq():
@@ -109,7 +98,8 @@ def uploaded_file(file_id):
                 if row[0] == file_id:
                     filename= row[1]
                     return redirect(url_for('uploaded_file' , file_id=file_id))
-        return render_template('editor.html')
+            message = "Enter valid ID"
+            return render_template('editor.html' , message=message)
     else : 
         con = lite.connect('test.db')
         with con:
@@ -122,8 +112,9 @@ def uploaded_file(file_id):
                     break 
                 if row[0] == file_id:
                     filename= row[1]
-        return render_template('editor.html',filename=filename)
-    
+                    return render_template('editor.html',filename=filename)
+            message = "Enter valid ID"
+            return render_template('editor.html', message = message)
 
 if __name__ == '__main__':
     app.run(debug=True) 
