@@ -71,14 +71,6 @@ $('#filter').click(function(){
   console.log("filter button clicked");
 });
 
-$('#rotate-right').click(function(){
-  console.log("rotate-right button clicked");
-});
-
-$('#rotate-left').click(function(){
-  console.log("rotate-left button clicked");
-});
-
 $('#horizontal-flip').click(function(){
   console.log("horizontal-flip button clicked");
 });

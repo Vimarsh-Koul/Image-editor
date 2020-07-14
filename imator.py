@@ -1,10 +1,10 @@
 from flask import send_from_directory
 from markupsafe import escape
 import os,time,shutil
-from flask import Flask, flash, request, redirect, url_for, render_template
+from flask import Flask, flash, request, redirect, url_for, render_template,jsonify
 from werkzeug.utils import secure_filename
 import sqlite3 as lite
-
+from PIL import Image
 
 UPLOAD_FOLDER = '/home/harsh/Documents/Image-editor/static/UPLOAD_FOLDER'
 ALLOWED_EXTENSIONS = { 'png', 'jpg', 'jpeg'}
@@ -40,10 +40,8 @@ def upload_file():
             return render_template('index.html')
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-
             # no need for this now !!!
             #  file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            
 
             # adding data to the database
             con = lite.connect('test.db')
@@ -53,6 +51,8 @@ def upload_file():
                 if ans==0:
                     cur.execute("DROP TABLE IF EXISTS uploads")
                     cur.execute("CREATE TABLE uploads(id TEXT, name TEXT);")
+                    cur.execute("DROP TABLE IF EXISTS operations")
+                    cur.execute("CREATE TABLE operations(id INTEGER PRIMARY KEY,image_id INTEGER, operation_name TEXT, operation_id INTEGER);")
                 ans=ans+1
 
                 # preventing my code from entering a pre existing file detail in my database again
@@ -66,13 +66,16 @@ def upload_file():
                         flash(u'An image already exists with this name','danger')
                         break
                 if count ==0 :
-                    cur.execute("INSERT INTO uploads VALUES(?,?)",(ans ,filename))
 
                     ans2= str(ans)
                     path = os.path.join(UPLOAD_FOLDER, ans2)
                     os.mkdir(path)
-                    file.save(os.path.join(path, filename))
+                    filename2 = "1_" +filename
+                    file.save(os.path.join(path, filename2))
                     flash(u'Image added','success')
+
+                    cur.execute("INSERT INTO uploads VALUES(?,?)",(ans ,filename))
+                    cur.execute("INSERT INTO operations(image_id,operation_name,operation_id) VALUES(?,?,?)",(ans ,'upload',1))
 
                     #cur.execute("DROP TABLE IF EXISTS " + ans2)
                     #cur.execute("CREATE TABLE" + ans2+"(id TEXT, name TEXT);")
@@ -123,17 +126,86 @@ def uploaded_file(file_id):
         con = lite.connect('test.db')
         with con:
             cur=con.cursor()
-            cur.execute("select * FROM uploads")
 
+            cur.execute("select * FROM operations")
+            value = 1
+            while True:
+                row = cur.fetchone()
+                if row == None:
+                    break
+                if row[1] == int(file_id):
+                    value = value +1
+
+            cur.execute("select * FROM uploads")
             while True:
                 row = cur.fetchone()
                 if row == None:
                     break
                 if row[0] == file_id:
                     filename= row[1]
-                    return render_template('editor.html',filename=filename, file_id = file_id)
+                    filename2 = str(value-1) +"_" + filename 
+                    return render_template('editor.html',filename=filename2, file_id = file_id)
             message = "Enter valid ID"
             return render_template('editor.html', message = message)
+
+
+@app.route("/editor/<file_id>/1",methods=['GET','POST'])
+def implementation(file_id):
+    
+    con = lite.connect('test.db')
+    with con:
+        cur=con.cursor()
+        cur.execute("select * FROM operations")
+
+        value = 1
+        while True:
+            row = cur.fetchone()
+            if row == None:
+                break
+            if row[1] == int(file_id):
+                value = value +1
+
+        cur.execute("select * FROM uploads")
+
+        while True:
+            row = cur.fetchone()
+            if row == None:
+                break
+            if row[0] == file_id:
+                filename= row[1]
+
+        path = os.path.join(UPLOAD_FOLDER, file_id)
+        filename3 = str(value-1) +"_" + filename 
+        path2 = os.path.join(path,filename3)
+        file = Image.open(path2)
+        file2 = file.copy()
+
+        # parameters that we will get from ajax to apply changes through this function
+        a= str(request.form['a'])
+        # parameters end
+
+        # code for this particular operation start
+        if(a == 'filter'):
+            file2 = file2.transpose(Image.ROTATE_90)
+
+        if(a == 'rotate-right'):
+            file2 = file2.transpose(Image.ROTATE_270)
+
+        if(a== 'crop'):
+            file2 = file2.transpose(Image.ROTATE_90)
+
+
+
+
+        # code ends
+
+        filename4 = str(value) + "_" + filename
+        path3 = os.path.join(path,filename4)
+        file2.save(path3) 
+
+        cur.execute("INSERT INTO operations(image_id,operation_name,operation_id) VALUES(?,?,?)",(file_id ,a,value))
+
+    return jsonify(result = filename4)
 
 if __name__ == '__main__':
     app.run(debug=True)

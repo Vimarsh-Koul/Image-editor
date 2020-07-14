@@ -42,7 +42,7 @@
       <div class="dropright">
         <button class="btn btn-lg btn-outline-dark dropdown-toggle" id="homeButton" data-toggle="dropdown" data-toggle="tooltip" title="home" aria-haspopup="true" aria-expanded="false" type="button" name="button"><i class="fas fa-home fa-2x"></i></button>
         <div class="dropdown-menu menu" aria-labelledby="homeButton">
-          <a id="new" class="dropdown-item item" href="javascript:void(0);">New</a>
+          <a id="new" class="dropdown-item item" href="/">New</a>
           <br>
           <a id="open" class="dropdown-item item" href="javascript:void(0);">open</a>
           <br>
@@ -53,6 +53,62 @@
       </div>
 
       <button id="crop" class="btn btn-lg btn-outline-dark" type="button" data-toggle="dropdown tooltip" data-placement="bottom" title="crop" name="button"><i class="fas fa-crop-alt fa-2x"></i></button>
+
+
+      <script type="text/javascript">
+
+        
+
+        $('#crop').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'crop'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+    })
+
+        $('#filter').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1/',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'filter'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+    })
+
+$('#rotate-left').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1/',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'rotate-left'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+    
+})
+
+</script>
 
       <div class="dropright">
         <button class="btn btn-lg btn-outline-dark dropdown-toggle" type="button" id="cutButton" data-toggle="dropdown" data-toggle="tooltip" title="cut" aria-haspopup="true" aria-expanded="false">
@@ -161,8 +217,7 @@
 
 
 
-
-
+</script>
   <!-- JS and JQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="/static/editor.js" charset="utf-8"></script>
