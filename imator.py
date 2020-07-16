@@ -4,7 +4,7 @@ import os,time,shutil
 from flask import Flask, flash, request, redirect, url_for, render_template,jsonify
 from werkzeug.utils import secure_filename
 import sqlite3 as lite
-from PIL import Image
+from PIL import Image,ImageOps
 
 UPLOAD_FOLDER = '/home/harsh/Documents/Image-editor/static/UPLOAD_FOLDER'
 ALLOWED_EXTENSIONS = { 'png', 'jpg', 'jpeg'}
@@ -77,12 +77,6 @@ def upload_file():
                     cur.execute("INSERT INTO uploads VALUES(?,?)",(ans ,filename))
                     cur.execute("INSERT INTO operations(image_id,operation_name,operation_id) VALUES(?,?,?)",(ans ,'upload',1))
 
-                    #cur.execute("DROP TABLE IF EXISTS " + ans2)
-                    #cur.execute("CREATE TABLE" + ans2+"(id TEXT, name TEXT);")
-                    #time = time.time()
-                    #ur.execute("INSERT INTO" +ans2+ "VALUES(?,?)",(ans, time ,filename))
-
-
             return render_template('index.html')
         else:
             flash('wrong format','danger')
@@ -148,7 +142,6 @@ def uploaded_file(file_id):
             message = "Enter valid ID"
             return render_template('editor.html', message = message)
 
-
 @app.route("/editor/<file_id>/1",methods=['GET','POST'])
 def implementation(file_id):
     
@@ -185,7 +178,7 @@ def implementation(file_id):
         # parameters end
 
         # code for this particular operation start
-        if(a == 'filter'):
+        if(a == 'rotate-left'):
             file2 = file2.transpose(Image.ROTATE_90)
 
         if(a == 'rotate-right'):
@@ -193,10 +186,16 @@ def implementation(file_id):
 
         if(a== 'crop'):
             file2 = file2.transpose(Image.ROTATE_90)
-
-
-
-
+        elif(a == 'horizontal-flip'):
+            file2 = file2.transpose(Image.FLIP_TOP_BOTTOM)
+        elif(a == 'vertical-flip'):
+            file2 = file2.transpose(Image.FLIP_LEFT_RIGHT)
+        elif(a == 'greyscale'):
+            file2 = file2.greyscale()
+        elif(a == 'negative'):
+            file2 = file2.transpose(Image.FLIP_TOP_BOTTOM)
+        elif(a == 'save2' or a == "save"):
+            file2 = file2.save(filename)
         # code ends
 
         filename4 = str(value) + "_" + filename

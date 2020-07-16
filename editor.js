@@ -11,14 +11,6 @@ $('#cancle').click(function(){
   confirm("Are you sure you want to Cancle!");
 });
 
-$('#save').click(function(){
-  alert("Changes saved");
-});
-
-$('#save2').click(function(){
-  alert("Changes saved");
-});
-
 var count = 0
 
  $('#pen').click(function abcd() {
@@ -65,18 +57,6 @@ $('#temperature').click(function(){
 
 $('#brightness').click(function(){
   console.log("brightess clicked");
-});
-
-$('#filter').click(function(){
-  console.log("filter button clicked");
-});
-
-$('#horizontal-flip').click(function(){
-  console.log("horizontal-flip button clicked");
-});
-
-$('#vertical-flip').click(function(){
-  console.log("vertical-flip button clicked");
 });
 
 $('#resize').click(function(){

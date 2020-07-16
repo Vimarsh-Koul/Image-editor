@@ -55,60 +55,7 @@
       <button id="crop" class="btn btn-lg btn-outline-dark" type="button" data-toggle="dropdown tooltip" data-placement="bottom" title="crop" name="button"><i class="fas fa-crop-alt fa-2x"></i></button>
 
 
-      <script type="text/javascript">
-
-        
-
-        $('#crop').click(function(event){
-            $.ajax({
-
-                url: '/editor/{{file_id}}/1',
-                type : 'POST',
-                dataType :'json', 
-                data : {a : 'crop'},
-                success:function(data) {
-                    /* $("#change").text(data.result);*/
-                    var value = data.result;
-                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
-                    $('.main-img').attr("src",path);
-                }
-            })
-    })
-
-        $('#filter').click(function(event){
-            $.ajax({
-
-                url: '/editor/{{file_id}}/1/',
-                type : 'POST',
-                dataType :'json', 
-                data : {a : 'filter'},
-                success:function(data) {
-                    /* $("#change").text(data.result);*/
-                    var value = data.result;
-                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
-                    $('.main-img').attr("src",path);
-                }
-            })
-    })
-
-$('#rotate-left').click(function(event){
-            $.ajax({
-
-                url: '/editor/{{file_id}}/1/',
-                type : 'POST',
-                dataType :'json', 
-                data : {a : 'rotate-left'},
-                success:function(data) {
-                    /* $("#change").text(data.result);*/
-                    var value = data.result;
-                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
-                    $('.main-img').attr("src",path);
-                }
-            })
-    
-})
-
-</script>
+      
 
       <div class="dropright">
         <button class="btn btn-lg btn-outline-dark dropdown-toggle" type="button" id="cutButton" data-toggle="dropdown" data-toggle="tooltip" title="cut" aria-haspopup="true" aria-expanded="false">
@@ -118,10 +65,12 @@ $('#rotate-left').click(function(event){
           <a id="rectangle-shape" class="dropdown-item item" href="javascript:void(0);">Rectangle shape</a>
           <a id="circle-shape" class="dropdown-item item" href="javascript:void(0);">Circle shape</a>
           <a id="triangle-shape" class="dropdown-item item" href="javascript:void(0);">Triangle shape</a>
+          <!--
           <footer class="foot">
           <button class="response1 apply-button"> apply</button>
           <button class="response2 cancle-button">cancel</button>
         </footer>
+        <!-->
         </div>
       </div>
 
@@ -141,10 +90,12 @@ $('#rotate-left').click(function(event){
           <a id="brightness" class="dropdown-item item" href="javascript:void(0);">Brightness<br>
             <input type="range" id="vol" name="vol" min="0" max="50" class="slider">
           </a>
+          <!--
           <footer class="foot1">
           <button class="response1 apply-button"> apply</button>
           <button class="response2 cancle-button">cancel</button>
         </footer>
+         <!-->
 
           <script type="text/javascript">
             var input = document.querySelectorAll("input");
@@ -160,9 +111,16 @@ $('#rotate-left').click(function(event){
 </script>
         </div>
 
-</div>
+       </div>
+      
+      <div class="dropright">
+        <button class="btn btn-lg btn-outline-dark dropdown-toggle" id="filter" data-toggle="dropdown" data-toggle="tooltip" title="rotations" aria-haspopup="true" aria-expanded="false" type="button" name="button"><i class="fas fa-filter fa-2x"></i></button>
+        <div class="dropdown-menu menu" aria-labelledby="filter">
+          <a id="Greyscale" class="dropdown-item item" href="javascript:void(0);">Greyscale</a>
+          <a id="Negative" class="dropdown-item item" href="javascript:void(0);">Negative</a>
 
-      <button id="filter" class="btn btn-lg btn-outline-dark" data-toggle="dropdown tooltip" data-placement="bottom" title="filter" type="button" name="button"><i class="fas fa-filter fa-2x"></i></button>
+        </div>
+      </div>
 
       <div class="dropright">
         <button class="btn btn-lg btn-outline-dark dropdown-toggle" id="homeButton" data-toggle="dropdown" data-toggle="tooltip" title="rotations" aria-haspopup="true" aria-expanded="false" type="button" name="button"><i class="fas fa-arrows-alt fa-2x"></i></button>
@@ -171,10 +129,13 @@ $('#rotate-left').click(function(event){
           <a id="rotate-left" class="dropdown-item item" href="javascript:void(0);">Rotate Left</a>
           <a id="horizontal-flip" class="dropdown-item item" href="javascript:void(0);">Horizontal flip</a>
           <a id="vertical-flip" class="dropdown-item item" href="javascript:void(0);">Vertical flip</a>
+          <!--
           <footer class="foot2">
           <button class="response1 apply-button"> apply</button>
           <button class="response2 cancle-button">cancel</button>
         </footer>
+        <!-->
+
         </div>
       </div>
 
@@ -215,6 +176,156 @@ $('#rotate-left').click(function(event){
     </div>
   </div>
 
+<script type="text/javascript">
+
+  $('#crop').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'crop'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+});
+
+$(document).ready(function(){
+        $('#rotate-left').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'rotate-left'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+})
+
+$('#rotate-right').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'rotate-right'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+    
+})
+
+$('#horizontal-flip').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'horizontal-flip'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+    })
+
+$('#vertical-flip').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'vertical-flip'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+    })
+
+$('#Greyscale').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'greyscale'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+    
+})
+
+$('#Negative').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'negative'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+    })
+
+$('#save').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'save'},
+                success:function() {
+                    /* $("#change").text(data.result);*/
+
+                    var value = data.result;
+                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+})
+
+$('#save2').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'save2'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                }
+            })
+})
+})
+</script>
 
 
 </script>
