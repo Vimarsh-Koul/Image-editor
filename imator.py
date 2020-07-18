@@ -249,10 +249,10 @@ def implementation(file_id):
             [width,height] = list(file2.size)
             for i in range(width):
                 for j in range(height):
-                    r,g,b,a=list(file5[i,j])
-                    l  = int(0.2126*r+0.7152*g+0.0722*b)
-                    valuee=(l,l,l,a)
-                    file5[i,j]=valuee
+                    s=list(file5[i,j])
+                    l = int(0.2126*s[0]+0.7152*s[1]+0.0722*s[2])
+                    s[0] = s[1] = s[2] = l
+                    file5[i,j]=(s[0],s[1],s[2])
         elif(feature == 'save'):
             path_download = os.path.join(DOWNLOADED_IMAGES,filename)
             file2.save(path_download)
