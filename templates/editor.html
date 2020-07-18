@@ -150,7 +150,7 @@
         <input type="number" name="text" value="">
         <input class="url-submit" type="submit" name="" value="submit">
       </form>
-      <img class="main-img" src="/static/UPLOAD_FOLDER/{{file_id}}/{{filename}}/" alt="{{message}}">
+      <img class="main-img" src="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/{{filename}}/" alt="{{message}}">
 
     </div>
     <div class="col nav-bar">
@@ -172,7 +172,7 @@
     </div>
     <div class="col-2 btn-group">
       <button id="cancle" class="btn btn-dark" type="button" name="button"><i class="fas fa-trash-alt fa-2x bottom-buttons"></i>&nbsp; Cancel</button>
-      <button id="save2" class="btn btn-dark" type="button" name="button"><i class="fas fa-save fa-2x bottom-buttons"></i>&nbsp; &nbsp; Save</button>
+      <button id="save2" class="btn btn-dark" type="button" name="button"><a href=""><i class="fas fa-save fa-2x bottom-buttons"></i>&nbsp; &nbsp; Save</a></button>
     </div>
   </div>
 
@@ -190,7 +190,7 @@ $(document).ready(function(){
                 success:function(data) {
                     /* $("#change").text(data.result);*/
                     var value = data.result;
-                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    path ="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
                     $('.main-img').attr("src",path);
                 }
             })
@@ -206,7 +206,7 @@ $(document).ready(function(){
                 success:function(data) {
                     /* $("#change").text(data.result);*/
                     var value = data.result;
-                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    path ="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
                     $('.main-img').attr("src",path);
                 }
             })
@@ -222,7 +222,7 @@ $(document).ready(function(){
                 success:function(data) {
                     /* $("#change").text(data.result);*/
                     var value = data.result;
-                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    path ="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
                     $('.main-img').attr("src",path);
                 }
             })
@@ -239,7 +239,7 @@ $(document).ready(function(){
                 success:function(data) {
                     /* $("#change").text(data.result);*/
                     var value = data.result;
-                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    path ="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
                     $('.main-img').attr("src",path);
                 }
             })
@@ -255,7 +255,7 @@ $(document).ready(function(){
                 success:function(data) {
                     /* $("#change").text(data.result);*/
                     var value = data.result;
-                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    path ="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
                     $('.main-img').attr("src",path);
                 }
             })
@@ -271,7 +271,7 @@ $(document).ready(function(){
                 success:function(data) {
                     /* $("#change").text(data.result);*/
                     var value = data.result;
-                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    path ="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
                     $('.main-img').attr("src",path);
                 }
             })
@@ -288,7 +288,7 @@ $(document).ready(function(){
                 success:function(data) {
                     /* $("#change").text(data.result);*/
                     var value = data.result;
-                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    path ="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
                     $('.main-img').attr("src",path);
                 }
             })

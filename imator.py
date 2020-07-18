@@ -1,7 +1,7 @@
 from flask import send_from_directory
 from markupsafe import escape
-import os,time,shutil,wget,urllib.request
-from flask import Flask, flash, request, redirect, url_for, render_template,jsonify
+import os,time,shutil,urllib.request,wget
+from flask import Flask, flash, request, redirect, url_for, render_template,jsonify,send_file
 from werkzeug.utils import secure_filename
 import sqlite3 as lite
 from PIL import Image,ImageDraw
@@ -256,7 +256,6 @@ def implementation(file_id):
         elif(feature == 'save'):
             path_download = os.path.join(DOWNLOADED_IMAGES,filename)
             file2.save(path_download)
-
 
         # code ends
 
