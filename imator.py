@@ -184,10 +184,38 @@ def implementation(file_id):
         # parameters end
 
         # code for this particular operation start
-        if(feature == 'rotate-left'):
-            file2 = file2.transpose(Image.ROTATE_90)
-        elif(feature == 'rotate-right'):
-            file2 = file2.transpose(Image.ROTATE_270)
+        if(feature == 'rotate-left'):                   # complete
+            input_pixels = file2.load()
+
+            # Create output image
+            [width,height] = list(file2.size)
+            output_image = Image.new("RGB", (height,width))
+            draw = ImageDraw.Draw(output_image)
+
+            # Copy pixels
+            for x in range(output_image.height):
+                for y in range(output_image.width):
+                    xp = file2.width - x -1
+                    yp = y
+                    draw.point((y, x), input_pixels[xp, yp])
+
+            file2 = output_image
+        elif(feature == 'rotate-right'):               # complete
+            input_pixels = file2.load()
+
+            # Create output image
+            [width,height] = list(file2.size)
+            output_image = Image.new("RGB", (height,width))
+            draw = ImageDraw.Draw(output_image)
+
+            # Copy pixels
+            for x in range(output_image.height):
+                for y in range(output_image.width):
+                    xp = x
+                    yp = file2.height - y-1
+                    draw.point((y, x), input_pixels[xp, yp])
+
+            file2 = output_image
         elif(feature == 'horizontal-flip'):             # complete
             input_pixels = file2.load()
 
@@ -219,8 +247,8 @@ def implementation(file_id):
         elif(feature == 'greyscale'):                      # complete
             file5 = file2.load()
             [width,height] = list(file2.size)
-            for i in range(0,width):
-                for j in range(0,height):
+            for i in range(width):
+                for j in range(height):
                     r,g,b,a=list(file5[i,j])
                     l  = int(0.2126*r+0.7152*g+0.0722*b)
                     valuee=(l,l,l,a)
