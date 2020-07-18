@@ -7,8 +7,11 @@ import sqlite3 as lite
 from PIL import Image,ImageDraw
 from math import sin,cos,pi
 
-UPLOAD_FOLDER = '/home/harsh/Documents/Image-editor/static/UPLOAD_FOLDER'
-DOWNLOADED_IMAGES = '/home/harsh/Documents/Image-editor/static/DOWNLOADED_IMAGES'
+file_path_1 = os.path.abspath(os.getcwd())
+file_path_2 = os.path.join(file_path_1,'static')
+
+UPLOAD_FOLDER = os.path.join(file_path_2,'UPLOAD_FOLDER')
+DOWNLOADED_IMAGES = os.path.join(file_path_2,'DOWNLOADED_IMAGES')
 ALLOWED_EXTENSIONS = { 'png', 'jpg', 'jpeg'}
 
 app = Flask(__name__)
@@ -223,9 +226,8 @@ def implementation(file_id):
                     valuee=(l,l,l,a)
                     file5[i,j]=valuee
         elif(feature == 'save'):
-            #path_download = os.path.join(DOWNLOADED_IMAGES,filename)
-            #file2.save(path_download)
-            urllib.request.urlretrieve(path2,filename)
+            path_download = os.path.join(DOWNLOADED_IMAGES,filename)
+            file2.save(path_download)
 
 
         # code ends
