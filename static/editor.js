@@ -1,4 +1,3 @@
-
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
@@ -9,14 +8,6 @@ $('#exit').click(function(){
 
 $('#cancle').click(function(){
   confirm("Are you sure you want to Cancle!");
-});
-
-$('#save').click(function(){
-  alert("Changes saved");
-});
-
-$('#save2').click(function(){
-  alert("Changes saved");
 });
 
 var count = 0
@@ -38,10 +29,6 @@ var count = 0
  $('.url-submit').click(function(){
    $('.url').css("visibility","hidden");
  });
-
- $('#new').click(function(){
-  console.log("new button clicked");
-});
 
 $('#rectangle-shape').click(function(){
   console.log("rectangle-shape button clicked");
@@ -65,26 +52,6 @@ $('#temperature').click(function(){
 
 $('#brightness').click(function(){
   console.log("brightess clicked");
-});
-
-$('#filter').click(function(){
-  console.log("filter button clicked");
-});
-
-$('#rotate-right').click(function(){
-  console.log("rotate-right button clicked");
-});
-
-$('#rotate-left').click(function(){
-  console.log("rotate-left button clicked");
-});
-
-$('#horizontal-flip').click(function(){
-  console.log("horizontal-flip button clicked");
-});
-
-$('#vertical-flip').click(function(){
-  console.log("vertical-flip button clicked");
 });
 
 $('#resize').click(function(){

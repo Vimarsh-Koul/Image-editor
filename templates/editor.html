@@ -178,6 +178,8 @@
 
 <script type="text/javascript">
 
+$(document).ready(function(){
+
   $('#crop').click(function(event){
             $.ajax({
 
@@ -192,10 +194,9 @@
                     $('.main-img').attr("src",path);
                 }
             })
-});
+  });
 
-$(document).ready(function(){
-        $('#rotate-left').click(function(event){
+  $('#rotate-left').click(function(event){
             $.ajax({
 
                 url: '/editor/{{file_id}}/1',
@@ -209,9 +210,9 @@ $(document).ready(function(){
                     $('.main-img').attr("src",path);
                 }
             })
-})
+  });
 
-$('#rotate-right').click(function(event){
+  $('#rotate-right').click(function(event){
             $.ajax({
 
                 url: '/editor/{{file_id}}/1',
@@ -226,9 +227,9 @@ $('#rotate-right').click(function(event){
                 }
             })
     
-})
+  });
 
-$('#horizontal-flip').click(function(event){
+  $('#horizontal-flip').click(function(event){
             $.ajax({
 
                 url: '/editor/{{file_id}}/1',
@@ -242,9 +243,9 @@ $('#horizontal-flip').click(function(event){
                     $('.main-img').attr("src",path);
                 }
             })
-    })
+  });
 
-$('#vertical-flip').click(function(event){
+  $('#vertical-flip').click(function(event){
             $.ajax({
 
                 url: '/editor/{{file_id}}/1',
@@ -258,9 +259,9 @@ $('#vertical-flip').click(function(event){
                     $('.main-img').attr("src",path);
                 }
             })
-    })
+  });
 
-$('#Greyscale').click(function(event){
+  $('#Greyscale').click(function(event){
             $.ajax({
 
                 url: '/editor/{{file_id}}/1',
@@ -275,9 +276,9 @@ $('#Greyscale').click(function(event){
                 }
             })
     
-})
+  });
 
-$('#Negative').click(function(event){
+  $('#Negative').click(function(event){
             $.ajax({
 
                 url: '/editor/{{file_id}}/1',
@@ -291,47 +292,44 @@ $('#Negative').click(function(event){
                     $('.main-img').attr("src",path);
                 }
             })
-    })
+  });
 
-$('#save').click(function(event){
+  $('#save').click(function(event){
             $.ajax({
 
                 url: '/editor/{{file_id}}/1',
                 type : 'POST',
                 dataType :'json', 
                 data : {a : 'save'},
-                success:function() {
+                success:function(data) {
                     /* $("#change").text(data.result);*/
-
-                    var value = data.result;
-                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
-                    $('.main-img').attr("src",path);
+                    alert('changes saved');
                 }
             })
-})
+  });
 
-$('#save2').click(function(event){
+  $('#save2').click(function(event){
             $.ajax({
 
                 url: '/editor/{{file_id}}/1',
                 type : 'POST',
                 dataType :'json', 
-                data : {a : 'save2'},
+                data : {a : 'save'},
                 success:function(data) {
                     /* $("#change").text(data.result);*/
-                    var value = data.result;
-                    path ="/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    alert('changes saved');
                 }
             })
-})
-})
+  });
+
+});
 </script>
 
-
-</script>
   <!-- JS and JQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="/static/editor.js" charset="utf-8"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    
+  </script>
+  <script src="/static/editor.js"></script>
 </body>
 
 </html>

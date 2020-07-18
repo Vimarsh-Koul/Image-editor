@@ -1,12 +1,14 @@
 from flask import send_from_directory
 from markupsafe import escape
-import os,time,shutil
+import os,time,shutil,wget,urllib.request
 from flask import Flask, flash, request, redirect, url_for, render_template,jsonify
 from werkzeug.utils import secure_filename
 import sqlite3 as lite
-from PIL import Image,ImageOps
+from PIL import Image,ImageDraw
+from math import sin,cos,pi
 
 UPLOAD_FOLDER = '/home/harsh/Documents/Image-editor/static/UPLOAD_FOLDER'
+DOWNLOADED_IMAGES = '/home/harsh/Documents/Image-editor/static/DOWNLOADED_IMAGES'
 ALLOWED_EXTENSIONS = { 'png', 'jpg', 'jpeg'}
 
 app = Flask(__name__)
@@ -17,6 +19,7 @@ app.config['SECRET_KEY'] = '3a33686984f59acd653d57db8bb526ce'
 for filename in os.listdir(UPLOAD_FOLDER):
     file_path = os.path.join(UPLOAD_FOLDER, filename)
     shutil.rmtree(file_path)
+
 
 # using this variable as global to enter data in our database
 ans=0
@@ -174,35 +177,64 @@ def implementation(file_id):
         file2 = file.copy()
 
         # parameters that we will get from ajax to apply changes through this function
-        a= str(request.form['a'])
+        feature= str(request.form['a'])
         # parameters end
 
         # code for this particular operation start
-        if(a == 'rotate-left'):
+        if(feature == 'rotate-left'):
             file2 = file2.transpose(Image.ROTATE_90)
-
-        if(a == 'rotate-right'):
+        elif(feature == 'rotate-right'):
             file2 = file2.transpose(Image.ROTATE_270)
+        elif(feature == 'horizontal-flip'):             # complete
+            input_pixels = file2.load()
 
-        if(a== 'crop'):
-            file2 = file2.transpose(Image.ROTATE_90)
-        elif(a == 'horizontal-flip'):
-            file2 = file2.transpose(Image.FLIP_TOP_BOTTOM)
-        elif(a == 'vertical-flip'):
-            file2 = file2.transpose(Image.FLIP_LEFT_RIGHT)
-        elif(a == 'greyscale'):
-            file2 = file2.greyscale()
-        elif(a == 'negative'):
-            file2 = file2.transpose(Image.FLIP_TOP_BOTTOM)
-        elif(a == 'save2' or a == "save"):
-            file2 = file2.save(filename)
+            # Create output image
+            output_image = Image.new("RGB", file2.size)
+            draw = ImageDraw.Draw(output_image)
+
+            # Copy pixels
+            for x in range(output_image.width):
+                for y in range(output_image.height):
+                    xp = file2.width - x - 1
+                    draw.point((x, y), input_pixels[xp, y])
+
+            file2 = output_image
+        elif(feature == 'vertical-flip'):                 # complete
+            input_pixels = file2.load()
+
+            # Create output image
+            output_image = Image.new("RGB", file2.size)
+            draw = ImageDraw.Draw(output_image)
+
+            # Copy pixels
+            for x in range(output_image.width):
+                for y in range(output_image.height):
+                    yp = file2.height - y -1
+                    draw.point((x, y), input_pixels[x, yp])
+
+            file2 = output_image
+        elif(feature == 'greyscale'):                      # complete
+            file5 = file2.load()
+            [width,height] = list(file2.size)
+            for i in range(0,width):
+                for j in range(0,height):
+                    r,g,b,a=list(file5[i,j])
+                    l  = int(0.2126*r+0.7152*g+0.0722*b)
+                    valuee=(l,l,l,a)
+                    file5[i,j]=valuee
+        elif(feature == 'save'):
+            #path_download = os.path.join(DOWNLOADED_IMAGES,filename)
+            #file2.save(path_download)
+            urllib.request.urlretrieve(path2,filename)
+
+
         # code ends
 
         filename4 = str(value) + "_" + filename
         path3 = os.path.join(path,filename4)
         file2.save(path3) 
 
-        cur.execute("INSERT INTO operations(image_id,operation_name,operation_id) VALUES(?,?,?)",(file_id ,a,value))
+        cur.execute("INSERT INTO operations(image_id,operation_name,operation_id) VALUES(?,?,?)",(file_id ,feature,value))
 
     return jsonify(result = filename4)
 
