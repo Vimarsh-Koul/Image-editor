@@ -164,15 +164,16 @@
     <div class="col-1">
       <button id="setting" class="btn btn-lg btn-dark" type="button" data-toggle="dropdown tooltip" data-placement="bottom" title="setting" name="button"><i class="fas fa-cog fa-2x"></i></button>
     </div>
-    <div class="col-5">
+    <div class="col-4">
     </div>
     <div class="col-2 btn-group">
       <button id="undo" class="btn btn-dark" type="button" data-toggle="dropdown tooltip" data-placement="bottom" title="undo" name="button"><i class="fas fa-arrow-alt-circle-left fa-2x"></i></button>
       <button id="redo" class="btn btn-dark" type="button" data-toggle="dropdown tooltip" data-placement="bottom" title="redo" name="button"><i class="fas fa-arrow-alt-circle-right fa-2x"></i></button>
     </div>
-    <div class="col-2 btn-group">
+    <div class="col-3 btn-group">
       <button id="cancle" class="btn btn-dark" type="button" name="button"><i class="fas fa-trash-alt fa-2x bottom-buttons"></i>&nbsp; Cancel</button>
-      <button id="save2" class="btn btn-dark" type="button" name="button"><a href=""><i class="fas fa-save fa-2x bottom-buttons"></i>&nbsp; &nbsp; Save</a></button>
+      <button id="save2" class="btn btn-dark" type="button" name="button"><i class="fas fa-save fa-2x bottom-buttons"></i>&nbsp; &nbsp; Save</button>
+      <a id="download_image" href="" download=""><button class="btn btn-dark" type="button" name="button"><i class="fas fa-download fa-2x bottom-buttons"></i>&nbsp; &nbsp; Download</button></a>
     </div>
   </div>
 
@@ -294,20 +295,6 @@ $(document).ready(function(){
             })
   });
 
-  $('#save').click(function(event){
-            $.ajax({
-
-                url: '/editor/{{file_id}}/1',
-                type : 'POST',
-                dataType :'json', 
-                data : {a : 'save'},
-                success:function(data) {
-                    /* $("#change").text(data.result);*/
-                    alert('changes saved');
-                }
-            })
-  });
-
   $('#save2').click(function(event){
             $.ajax({
 
@@ -318,9 +305,16 @@ $(document).ready(function(){
                 success:function(data) {
                     /* $("#change").text(data.result);*/
                     alert('changes saved');
+                    var value = data.result;
+                    path ="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('#download_image').attr("href",path);
                 }
             })
   });
+
+  $('#download_image').click(function(){
+    alert('Please save the Image before downloading if already not')
+  })
 
 });
 </script>

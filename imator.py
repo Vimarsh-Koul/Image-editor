@@ -11,7 +11,6 @@ file_path_1 = os.path.abspath(os.getcwd())
 file_path_2 = os.path.join(file_path_1,'static')
 
 UPLOAD_FOLDER = os.path.join(file_path_2,'UPLOAD_FOLDER')
-DOWNLOADED_IMAGES = os.path.join(file_path_2,'DOWNLOADED_IMAGES')
 ALLOWED_EXTENSIONS = { 'png', 'jpg', 'jpeg'}
 
 app = Flask(__name__)
@@ -253,9 +252,6 @@ def implementation(file_id):
                     l = int(0.2126*s[0]+0.7152*s[1]+0.0722*s[2])
                     s[0] = s[1] = s[2] = l
                     file5[i,j]=(s[0],s[1],s[2])
-        elif(feature == 'save'):
-            path_download = os.path.join(DOWNLOADED_IMAGES,filename)
-            file2.save(path_download)
 
         # code ends
 

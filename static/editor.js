@@ -1,7 +1,3 @@
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-
 $('#exit').click(function(){
   confirm("Are you sure you want to Exit!");
 });
@@ -77,3 +73,4 @@ $('.apply-button').click(function(){
 $('.cancle-button').click(function(){
  console.log("cancle button clicked");
 });
+
