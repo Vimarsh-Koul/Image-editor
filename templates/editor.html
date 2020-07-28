@@ -6,10 +6,10 @@
   <title>Imator</title>
 
   <!-- favicon -->
-  <link rel="icon" href="static/images/favicon.ico">
+  <link rel="icon" href="/static/images/favicon.ico">
 
   <!-- CSS file -->
-  <link rel="stylesheet" href="static/editor.css">
+  <link rel="stylesheet" href="/static/editor.css">
 
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -42,7 +42,7 @@
       <div class="dropright">
         <button class="btn btn-lg btn-outline-dark dropdown-toggle" id="homeButton" data-toggle="dropdown" data-toggle="tooltip" title="home" aria-haspopup="true" aria-expanded="false" type="button" name="button"><i class="fas fa-home fa-2x"></i></button>
         <div class="dropdown-menu menu" aria-labelledby="homeButton">
-          <a id="new" class="dropdown-item item" href="javascript:void(0);">New</a>
+          <a id="new" class="dropdown-item item" href="/">New</a>
           <br>
           <a id="open" class="dropdown-item item" href="javascript:void(0);">open</a>
           <br>
@@ -54,6 +54,9 @@
 
       <button id="crop" class="btn btn-lg btn-outline-dark" type="button" data-toggle="dropdown tooltip" data-placement="bottom" title="crop" name="button"><i class="fas fa-crop-alt fa-2x"></i></button>
 
+
+      
+
       <div class="dropright">
         <button class="btn btn-lg btn-outline-dark dropdown-toggle" type="button" id="cutButton" data-toggle="dropdown" data-toggle="tooltip" title="cut" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-cut fa-2x"></i>
@@ -62,10 +65,12 @@
           <a id="rectangle-shape" class="dropdown-item item" href="javascript:void(0);">Rectangle shape</a>
           <a id="circle-shape" class="dropdown-item item" href="javascript:void(0);">Circle shape</a>
           <a id="triangle-shape" class="dropdown-item item" href="javascript:void(0);">Triangle shape</a>
+          <!--
           <footer class="foot">
           <button class="response1 apply-button"> apply</button>
           <button class="response2 cancle-button">cancel</button>
         </footer>
+        <!-->
         </div>
       </div>
 
@@ -85,10 +90,12 @@
           <a id="brightness" class="dropdown-item item" href="javascript:void(0);">Brightness<br>
             <input type="range" id="vol" name="vol" min="0" max="50" class="slider">
           </a>
+          <!--
           <footer class="foot1">
           <button class="response1 apply-button"> apply</button>
           <button class="response2 cancle-button">cancel</button>
         </footer>
+         <!-->
 
           <script type="text/javascript">
             var input = document.querySelectorAll("input");
@@ -104,9 +111,16 @@
 </script>
         </div>
 
-</div>
+       </div>
+      
+      <div class="dropright">
+        <button class="btn btn-lg btn-outline-dark dropdown-toggle" id="filter" data-toggle="dropdown" data-toggle="tooltip" title="rotations" aria-haspopup="true" aria-expanded="false" type="button" name="button"><i class="fas fa-filter fa-2x"></i></button>
+        <div class="dropdown-menu menu" aria-labelledby="filter">
+          <a id="Greyscale" class="dropdown-item item" href="javascript:void(0);">Greyscale</a>
+          <a id="Negative" class="dropdown-item item" href="javascript:void(0);">Negative</a>
 
-      <button id="filter" class="btn btn-lg btn-outline-dark" data-toggle="dropdown tooltip" data-placement="bottom" title="filter" type="button" name="button"><i class="fas fa-filter fa-2x"></i></button>
+        </div>
+      </div>
 
       <div class="dropright">
         <button class="btn btn-lg btn-outline-dark dropdown-toggle" id="homeButton" data-toggle="dropdown" data-toggle="tooltip" title="rotations" aria-haspopup="true" aria-expanded="false" type="button" name="button"><i class="fas fa-arrows-alt fa-2x"></i></button>
@@ -115,10 +129,13 @@
           <a id="rotate-left" class="dropdown-item item" href="javascript:void(0);">Rotate Left</a>
           <a id="horizontal-flip" class="dropdown-item item" href="javascript:void(0);">Horizontal flip</a>
           <a id="vertical-flip" class="dropdown-item item" href="javascript:void(0);">Vertical flip</a>
+          <!--
           <footer class="foot2">
           <button class="response1 apply-button"> apply</button>
           <button class="response2 cancle-button">cancel</button>
         </footer>
+        <!-->
+
         </div>
       </div>
 
@@ -130,9 +147,11 @@
     <div class="col-10 workspace">
       <form class="url" action="" method="post">
         <label for="">enter url : </label>
-        <input type="text" name="" value="">
+        <input type="number" name="text" value="">
         <input class="url-submit" type="submit" name="" value="submit">
       </form>
+      <img class="main-img" src="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/{{filename}}/" alt="{{message}}">
+
     </div>
     <div class="col nav-bar">
       <h3>Nav <br>Bar </h3>
@@ -145,25 +164,183 @@
     <div class="col-1">
       <button id="setting" class="btn btn-lg btn-dark" type="button" data-toggle="dropdown tooltip" data-placement="bottom" title="setting" name="button"><i class="fas fa-cog fa-2x"></i></button>
     </div>
-    <div class="col-5">
+    <div class="col-4">
     </div>
     <div class="col-2 btn-group">
       <button id="undo" class="btn btn-dark" type="button" data-toggle="dropdown tooltip" data-placement="bottom" title="undo" name="button"><i class="fas fa-arrow-alt-circle-left fa-2x"></i></button>
       <button id="redo" class="btn btn-dark" type="button" data-toggle="dropdown tooltip" data-placement="bottom" title="redo" name="button"><i class="fas fa-arrow-alt-circle-right fa-2x"></i></button>
     </div>
-    <div class="col-2 btn-group">
+    <div class="col-3 btn-group">
       <button id="cancle" class="btn btn-dark" type="button" name="button"><i class="fas fa-trash-alt fa-2x bottom-buttons"></i>&nbsp; Cancel</button>
       <button id="save2" class="btn btn-dark" type="button" name="button"><i class="fas fa-save fa-2x bottom-buttons"></i>&nbsp; &nbsp; Save</button>
+      <a id="download_image" href="" download=""><button class="btn btn-dark" type="button" name="button"><i class="fas fa-download fa-2x bottom-buttons"></i>&nbsp; &nbsp; Download</button></a>
     </div>
   </div>
 
+<script type="text/javascript">
 
+$(document).ready(function(){
 
+  $('#crop').click(function(event){
+            $.ajax({
 
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'crop'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+  });
+
+  $('#rotate-left').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'rotate-left'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+  });
+
+  $('#rotate-right').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'rotate-right'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+    
+  });
+
+  $('#horizontal-flip').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'horizontal-flip'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+  });
+
+  $('#vertical-flip').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'vertical-flip'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+  });
+
+  $('#Greyscale').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'greyscale'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+    
+  });
+
+  $('#Negative').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'negative'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    var value = data.result;
+                    path ="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('.main-img').attr("src",path);
+                }
+            })
+  });
+
+  $('#save').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'save'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    alert('changes saved');
+                    var value = data.result;
+                    path ="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('#download_image').attr("href",path);
+                }
+            })
+  });
+
+  $('#save2').click(function(event){
+            $.ajax({
+
+                url: '/editor/{{file_id}}/1',
+                type : 'POST',
+                dataType :'json', 
+                data : {a : 'save'},
+                success:function(data) {
+                    /* $("#change").text(data.result);*/
+                    alert('changes saved');
+                    var value = data.result;
+                    path ="http://127.0.0.1:5000/static/UPLOAD_FOLDER/{{file_id}}/"+value+"/";
+                    $('#download_image').attr("href",path);
+                }
+            })
+  });
+
+  $('#download_image').click(function(){
+    alert('Please save the Image before downloading if already not')
+  })
+
+});
+</script>
 
   <!-- JS and JQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="static/editor.js" charset="utf-8"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    
+  </script>
+  <script src="/static/editor.js"></script>
 </body>
 
 </html>

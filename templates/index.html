@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <title>Imator</title>
-  <link rel="icon" href="static/images/favicon.ico">
-  <link rel="stylesheet" href="static/styles2.css">
+  <link rel="icon" href="/static/images/favicon.ico">
+  <link rel="stylesheet" href="/static/styles2.css">
 
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Indie+Flower&display=swap" rel="stylesheet">
 
 </head>
-
+ 
 <body>
   <h1 style="font-size:1500%;"><b>Imator</b></h1>
   <div class="">
@@ -23,18 +23,47 @@
       all new Imator with latest editing tolls.
     </h2>
     <br>
-      <button class="btn btn-lg btn-outline-dark btn-2" type="button" name="button">
+    
+
+    <form method = "POST" action="" enctype=multipart/form-data>
+      <label class="form_1">Add IMAGE</label>
+      <input class="form_1 btn btn-outline-dark" type="file" name="file">
+      <input type="submit" name="">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <span class="alert alert-{{category}}">{{message}}</span>
+          {% endfor %}
+        {% endif %}
+      {%endwith%}
+      {% with errors = get_flashed_messages(category_filter=["error"]) %}
+        {% if errors %}
+          <div class="alert-message block-message error">
+            <a class="close" href="#">×</a>
+            <ul>
+              {%- for msg in errors %}
+                <li>{{ msg }}</li>
+              {% endfor -%}
+            </ul>
+          </div>
+        {% endif %}
+      {% endwith %}
+      
+    </form>
+
+      <!--button class="btn btn-lg btn-outline-dark btn-2" type="button" name="button">
         <label class="btn-2" for="files">Add Image</label>
         <br>
         <input type="file" style="visibility:hidden;" id="files">
-      </button>
+      </button-->
   </div>
 
   <h2 class="buttons">
-    <button type="button" class="btn btn-lg btn-outline-dark btn-1"><a href="faq.html">Brief</a></button>
+    <button type="button" class="btn btn-lg btn-outline-dark btn-1"><a href="faq">Brief</a></button>
     <button type="button" class="btn btn-lg btn-outline-dark btn-1"><a href="javascript:void(0);">Examples</a></button>
-    <button type="button" class="btn btn-lg btn-outline-dark btn-1"><a href="editor.html">Open Editor</a></button>
+    <button type="button" class="btn btn-lg btn-outline-dark btn-1"><a href="editor">Open Editor</a></button>
   </h2>
+
 
 </body>
 
